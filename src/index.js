@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 const puerto = 3000 || process.env.PORT;
+const Reloj = require(__dirname + "/public/js/reloj.js");
+
+const r1 = new Reloj(20, 50, 46);
+r1.hora();
 
 app.use(express.static(__dirname + "/public"));
 
