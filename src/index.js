@@ -3,8 +3,13 @@ const app = express();
 const puerto = 3000 || process.env.PORT;
 const Reloj = require(__dirname + "/public/js/reloj.js");
 
+//relojes
 const r1 = new Reloj(20, 50, 46);
+const r2 = new Reloj(0, 40, 20);
+const r3 = new Reloj(14, 30, 15);
 r1.hora();
+r2.hora();
+r3.hora();
 
 app.use(express.static(__dirname + "/public"));
 
