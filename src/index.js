@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const puerto = 3000 || process.env.PORT;
 
+app.use(express.static(__dirname + "/public"));
+
 //maestro
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/maestro.html");
