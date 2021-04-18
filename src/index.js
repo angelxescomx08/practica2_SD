@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 const puerto = 3000 || process.env.PORT;
 const Reloj = require(__dirname + "/public/js/reloj.js");
 
@@ -30,10 +32,20 @@ app.get("/esclavo3", (req, res) => {
   res.sendFile(__dirname + "/public/esclavo3.html");
 });
 
+//cuando alguien se conecta se ejecuta
+io.on("connection", function (socket) {
+  console.log("Se han conectado");
+
+  //Cuando alguien se desconecta se ejecuta
+  socket.on("disconnect", function () {
+    console.log("Se ha desconectado un usuario");
+  });
+});
+
 app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/public/error.html");
 });
 
-app.listen(puerto, () => {
+http.listen(puerto, () => {
   console.log(`Escuchando en el puerto ${puerto}`);
 });
