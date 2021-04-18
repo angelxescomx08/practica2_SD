@@ -25,7 +25,7 @@ module.exports = class Reloj {
           this.s = 0;
         }
       }
-      console.log(this.h, this.m, this.s);
+      //console.log(this.h, this.m, this.s);
     }, this.v);
   }
 };
