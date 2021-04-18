@@ -52,6 +52,14 @@ module.exports = class Reloj {
     return hora
 }
 
+  Parar(){
+    this.p = true;
+  }
+
+  Continuar(){
+    this.p = false;
+  }
+
   set setH(h) {
     this.h = h;
   }
@@ -62,6 +70,10 @@ module.exports = class Reloj {
 
   set setS(s) {
     this.s = s;
+  }
+
+  set setV(v) {
+    this.v = v;
   }
 
   get getH() {

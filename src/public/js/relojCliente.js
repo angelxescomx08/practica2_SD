@@ -51,6 +51,14 @@ class Reloj {
         }
         return hora
     }
+
+    parar(){
+      this.p = true;
+    }
+  
+    continuar(){
+      this.p = false;
+    }
     
     set setH(h) {
       this.h = h;
@@ -62,6 +70,10 @@ class Reloj {
   
     set setS(s) {
       this.s = s;
+    }
+
+    set setV(v) {
+      this.v = v;
     }
   
     get getH() {
