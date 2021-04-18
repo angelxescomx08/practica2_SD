@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Esclavo 1</title>
+  <link rel="stylesheet" href="./css/estilos.css" />
+  <script src="./js/relojCliente.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <section style="color: aliceblue;">Desarrollado por <br />
+
+    Hernández Radilla José Ángel<br />
+    Pelaez Tellitud Diego Said<br />
+    Contreras Mote Manuel Adrian<br />
+    Soriano Montiel Bryan Andrés<br />
+
+  </section>
+  <p id="reloj"></p>
+  <script>
+    const socket = io();
+    const p = document.getElementById("reloj");
+    //recibiendo la hora
+    const r1 = new Reloj(0, 0, 0);
+    socket.on("e1", (hora) => {
+      r1.setH = hora.h;
+      r1.setM = hora.m;
+      r1.setS = hora.s;
+    });
+    r1.hora();
+    setInterval(() => {
+      let hora = r1.formato_hora();
+      p.innerHTML = hora;
+    }, r1.getV);
+  </script>
+</body>
+
+</html>

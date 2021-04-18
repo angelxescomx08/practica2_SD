@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Maestro</title>
+  <link rel="stylesheet" href="./css/maestro.css" />
+  <script src="./js/relojCliente.js"></script>
+  <script src="./js/modificar.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <section style="color: aliceblue;">Desarrollado por <br />
+
+    Hernández Radilla José Ángel<br />
+    Pelaez Tellitud Diego Said<br />
+    Contreras Mote Manuel Adrian<br />
+    Soriano Montiel Bryan Andrés<br />
+
+  </section>
+  <script>
+    const r1 = new Reloj(0, 0, 0);
+    const r2 = new Reloj(0, 0, 0);
+    const r3 = new Reloj(0, 0, 0);
+    let r = null;
+    const socket = io();
+  </script>
+  <div id="capaVentana">
+      <fieldset class="fieldNoFlt"><label for="asuntoOcupacion">
+          <span class="labelUp2">Ingrese hora</span>
+          <input type="text" id="h" cols="60" value="0">
+        </label></fieldset>
+      <fieldset class="fieldNoFlt"><label for="asuntoOcupacion">
+          <span class="labelUp2">Ingrese minutos</span>
+          <input type="text" id="m" cols="60" value="0">
+        </label></fieldset>
+      <fieldset class="fieldNoFlt"><label for="asuntoOcupacion">
+          <span class="labelUp2">Ingrese segundos</span>
+          <input type="text" id="s" cols="60" value="0">
+        </label></fieldset>
+        <fieldset class="fieldNoFlt"><label for="asuntoOcupacion">
+          <span class="labelUp2">Ingrese velocidad (segundos)</span>
+          <input type="text" id="v" cols="60" value="1000">
+        </label></fieldset>
+      <button onclick="botonModificar(r.r,r.n,socket);cerrarVentana();">Aceptar</button>
+  </div>
+  <div id="capaFondo"></div>
+  <div>
+    <p id="reloj1"></p>
+    <button onclick="r=abrirVentana(r1,1);">Modificar</button>
+    <button onclick="enviar(r1,1,socket);">Enviar</button>
+  </div>
+  <div>
+    <p id="reloj2"></p>
+    <button onclick="r=abrirVentana(r2,2);">Modificar</button>
+    <button onclick="enviar(r2,2,socket);">Enviar</button>
+  </div>
+  <div>
+    <p id="reloj3"></p>
+    <button onclick="r=abrirVentana(r3,3);">Modificar</button>
+    <button onclick="enviar(r3,3,socket);">Enviar</button>
+  </div>
+  <script>
+    const p1 = document.getElementById("reloj1");
+    const p2 = document.getElementById("reloj2");
+    const p3 = document.getElementById("reloj3");
+    //recibiendo la hora
+    socket.on("e1", (hora) => {
+      r1.setH = hora.h;
+      r1.setM = hora.m;
+      r1.setS = hora.s;
+    });
+    socket.on("e2", (hora) => {
+      r2.setH = hora.h;
+      r2.setM = hora.m;
+      r2.setS = hora.s;
+    });
+    socket.on("e3", (hora) => {
+      r3.setH = hora.h;
+      r3.setM = hora.m;
+      r3.setS = hora.s;
+    });
+    r1.hora();
+    r2.hora();
+    r3.hora();
+    setInterval(() => {
+      let hora = r1.formato_hora();
+      p1.innerHTML = hora;
+    }, r1.getV);
+    setInterval(() => {
+      let hora = r2.formato_hora();
+      p2.innerHTML = hora;
+    }, r2.getV);
+    setInterval(() => {
+      let hora = r3.formato_hora();
+      p3.innerHTML = hora;
+    }, r3.getV);
+  </script>
+</body>
+
+</html>
