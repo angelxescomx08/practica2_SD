@@ -1,0 +1,10 @@
+body {
+    background: black;
+  }
+  p {
+    display: block;
+    color: #17d4fe;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+  }

@@ -37,7 +37,13 @@ io.on("connection", function (socket) {
   console.log("Se han conectado");
 
   //esclavo1
-  io.emit("e1", { h: r1.getH, m: r1.getM, s: r3.getS });
+  io.emit("e1", { h: r1.getH, m: r1.getM, s: r1.getS });
+
+  //esclavo2
+  io.emit("e2", { h: r2.getH, m: r2.getM, s: r2.getS });
+
+  //esclavo2
+  io.emit("e3", { h: r3.getH, m: r3.getM, s: r3.getS });
 
   //Cuando alguien se desconecta se ejecuta
   socket.on("disconnect", function () {

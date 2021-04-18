@@ -6,12 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Esclavo 2</title>
     <link rel="stylesheet" href="./css/estilos.css" />
+    <script src="./js/relojCliente.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <p>Esclavo 2</p>
-    <script src="/socket.io/socket.io.js"></script>
+    <p id="reloj"></p>
     <script>
       const socket = io();
+      const p = document.getElementById("reloj");
+      //recibiendo la hora
+      const r2 = new Reloj(0, 0, 0);
+      socket.on("e2", (hora) => {
+        r2.setH = hora.h;
+        r2.setM = hora.m;
+        r2.setS = hora.s;
+      });
+      r2.hora();
+      setInterval(() => {
+        let hora = r2.formato_hora();
+        p.innerHTML = hora;
+      }, r2.getV);
     </script>
   </body>
 </html>

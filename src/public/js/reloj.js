@@ -29,6 +29,29 @@ module.exports = class Reloj {
     }, this.v);
   }
 
+  formato_hora(){
+    let hora = '';
+    if(this.h < 10){
+        hora+="0"+this.h.toString()+":";
+    }
+    else{
+        hora+=this.h.toString()+":";
+    }
+    if(this.m < 10){
+      hora+="0"+this.m.toString()+":";
+    }
+    else{
+        hora+=this.m.toString()+":";
+    }
+    if(this.s < 10){
+        hora+="0"+this.s.toString();
+    }
+    else{
+      hora+=this.s.toString();
+    }
+    return hora
+}
+
   set setH(h) {
     this.h = h;
   }
