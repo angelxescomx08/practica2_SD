@@ -8,10 +8,26 @@
     <link rel="stylesheet" href="./css/estilos.css" />
   </head>
   <body>
-    <p class="reloj">Esclavo 1</p>
+    <p id="reloj"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
+      const p = document.getElementById("reloj");
+      //recibiendo la hora
+      const r1 = new Reloj(0, 0, 0);
+      socket.on("e1", (hora) => {
+        r1.setH = hora.h;
+        r1.setM = hora.m;
+        r1.setS = hora.s;
+      });
+      setInterval(() => {
+        p.innerHTML =
+          r1.getH.toString() +
+          ":" +
+          r1.getM.toString() +
+          ":" +
+          r1.getS.toString();
+      }, r1.getV);
     </script>
   </body>
 </html>

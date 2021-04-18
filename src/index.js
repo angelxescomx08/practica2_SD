@@ -36,6 +36,9 @@ app.get("/esclavo3", (req, res) => {
 io.on("connection", function (socket) {
   console.log("Se han conectado");
 
+  //esclavo1
+  io.emit("e1", { h: r1.getH, m: r1.getM, s: r3.getS });
+
   //Cuando alguien se desconecta se ejecuta
   socket.on("disconnect", function () {
     console.log("Se ha desconectado un usuario");

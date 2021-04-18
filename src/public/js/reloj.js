@@ -28,4 +28,32 @@ module.exports = class Reloj {
       //console.log(this.h, this.m, this.s);
     }, this.v);
   }
+
+  set setH(h) {
+    this.h = h;
+  }
+
+  set setM(m) {
+    this.m = m;
+  }
+
+  set setS(s) {
+    this.s = s;
+  }
+
+  get getH() {
+    return this.h;
+  }
+
+  get getM() {
+    return this.m;
+  }
+
+  get getS() {
+    return this.s;
+  }
+
+  get getV() {
+    return this.v;
+  }
 };
